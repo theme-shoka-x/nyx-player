@@ -23,6 +23,7 @@
   },
   "dependencies": {
     "@iconify-json/ri": "^1.2.5",
+    "@vueuse/core": "^12.4.0",
     "es-toolkit": "^1.31.0",
     "pinia": "^2.3.0",
     "pinia-plugin-persistedstate": "^4.2.0",

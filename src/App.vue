@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { onMounted, reactive, watch } from 'vue'
+import { useStyleTag } from '@vueuse/core'
+import { onMounted, watch } from 'vue'
 import AudioPlayer from './components/AudioPlayer.vue'
 import { usePlayingStore } from './components/playingStore'
 import { type Preset, presets } from './presets'
@@ -8,6 +9,7 @@ const props = defineProps<{
   urls: { url: string, name: string }[]
   showBtn: string
   playBtn?: string
+  darkModeTarget?: string
   preset?: string
   styles?: Preset
 }>()
@@ -60,23 +62,49 @@ if (props.preset) {
   }
 }
 
-const colors = reactive({
-  '--player-border': stylesPresent.styles.light.playerBorder,
-  '--close-btn': stylesPresent.styles.light.closeBtn,
-  '--secondary-text': stylesPresent.styles.light.secondaryText,
-  '--primary-text': stylesPresent.styles.light.primaryText,
-  '--player-background': stylesPresent.styles.light.playerBackground,
-  '--playlist-line': stylesPresent.styles.light.playListLine,
-  '--hover-btn': stylesPresent.styles.light.hoverBtn,
-  '--box-bg-shadow': stylesPresent.styles.light.boxBackgroundShadow,
-  '--primary-color': `rgb(${stylesPresent.styles.light.primaryColor})`,
-  '--primary-color-a': `rgba(${stylesPresent.styles.light.primaryColor},0.3)`,
-})
+const colorsLight
+= `{
+  --player-border: ${stylesPresent.styles.light.playerBorder};
+  --close-btn: ${stylesPresent.styles.light.closeBtn};
+  --secondary-text: ${stylesPresent.styles.light.secondaryText};
+  --primary-text: ${stylesPresent.styles.light.primaryText};
+  --player-background: ${stylesPresent.styles.light.playerBackground};
+  --playlist-line: ${stylesPresent.styles.light.playListLine};
+  --hover-btn: ${stylesPresent.styles.light.hoverBtn};
+  --box-bg-shadow: ${stylesPresent.styles.light.boxBackgroundShadow};
+  --primary-color: 'rgb(${stylesPresent.styles.light.primaryColor})';
+  --primary-color-a: 'rgba(${stylesPresent.styles.light.primaryColor},0.3);
+}`
+
+const colorsDark
+= `{
+  --player-border: ${stylesPresent.styles.dark.playerBorder}; 
+  --close-btn: ${stylesPresent.styles.dark.closeBtn};
+  --secondary-text: ${stylesPresent.styles.dark.secondaryText};
+  --primary-text: ${stylesPresent.styles.dark.primaryText};
+  --player-background: ${stylesPresent.styles.dark.playerBackground};
+  --playlist-line: ${stylesPresent.styles.dark.playListLine};
+  --hover-btn: ${stylesPresent.styles.dark.hoverBtn};
+  --box-bg-shadow: ${stylesPresent.styles.dark.boxBackgroundShadow};
+  --primary-color: 'rgb(${stylesPresent.styles.dark.primaryColor})';
+  --primary-color-a: 'rgba(${stylesPresent.styles.dark.primaryColor},0.3);
+}`
+
+if (props.darkModeTarget) {
+  if (props.darkModeTarget === 'auto') {
+    useStyleTag(`@media(prefers-color-scheme:light){body${colorsLight}}`)
+    useStyleTag(`@media(prefers-color-scheme:dark){body${colorsDark}}`)
+  }
+  else {
+    useStyleTag(`html${colorsLight}`)
+    useStyleTag(`${props.darkModeTarget}${colorsDark}`)
+  }
+}
 </script>
 
 <template>
   <Suspense>
-    <AudioPlayer id="MusicPlayerRoot" :style="colors" :playlist-u-r-ls="urls" :show-player="playingStore.showPlayer" />
+    <AudioPlayer id="MusicPlayerRoot" :playlist-u-r-ls="urls" :show-player="playingStore.showPlayer" />
   </Suspense>
 </template>
 
