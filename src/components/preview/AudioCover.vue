@@ -18,9 +18,14 @@ const src = computed(() => {
 </script>
 
 <template>
-  <div class="cover" :class="{ playing: playingNow }">
-    <div class="disc">
-      <img :src="src" alt="music cover" class="blurx">
+  <div
+    class="cover relative flex-shrink-0 cursor-pointer before:absolute before:z-1 before:content-empty"
+    :class="{ playing: playingNow }"
+  >
+    <div class="disc relative max-h-144px p-6">
+      <Transition name="blurx" mode="out-in">
+        <img :key="src" :src="src" alt="music cover">
+      </Transition>
     </div>
   </div>
 </template>
@@ -71,20 +76,11 @@ const src = computed(() => {
     }
 }
 
-.blurx {
+.blurx-enter-active {
     animation: blur .8s ease-in-out forwards;
 }
 
-.cover {
-    position: relative;
-    flex-shrink: 0;
-    cursor: pointer;
-}
-
 .cover::before {
-    content: "";
-    position: absolute;
-    z-index: 1;
     background: url("../../assets/play_needle.png") no-repeat center/contain;
     width: 3.4375rem;
     height: 5.1875rem;
@@ -98,9 +94,6 @@ const src = computed(() => {
 .cover .disc {
     animation: rotate 20s linear infinite;
     animation-play-state: paused;
-    padding: 1.5rem;
-    max-height: 144px;
-    position: relative;
 }
 
 .cover .disc::after {

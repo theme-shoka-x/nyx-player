@@ -30,7 +30,6 @@ onMounted(() => {
   })
 })
 
-
 props.playlistURLs.forEach((url, index) => {
   playingStore.playlists.push(new PlayList(url.url, url.name, index))
 })
@@ -57,12 +56,12 @@ const src = computed(() => {
 
 <template>
   <Transition name="slideRight">
-    <div v-show="playingStore.showPlayer" class="player-info">
+    <div v-show="playingStore.showPlayer" class="player-info fixed z-9 overflow-hidden border-r-0.5rem">
       <AudioPreview />
       <AudioController />
       <audio id="audioPlayer" :src="src" :muted="!playingStore.enableVolume" @timeupdate="updateCurrentTime" @canplay="playingStore.currentId++" />
       <PlayListTabs />
-      <div class="close" @click="playingStore.showPlayer = false">
+      <div class="absolute right-4 top-3 cursor-pointer text-3.25" @click="playingStore.showPlayer = false">
         X
       </div>
     </div>
@@ -103,11 +102,6 @@ const src = computed(() => {
 }
 
 .close {
-  position: absolute;
-  top: 0.75rem
-  right: 1rem
-  cursor: pointer
-  font-size: 0.8125rem
   color: var(--grey-4)
 }
 
@@ -117,39 +111,11 @@ const src = computed(() => {
   background: var(--grey-1-a7);
   -webkit-backdrop-filter: blur(.625rem);
   backdrop-filter: blur(.625rem);
-  z-index: 9;
-  border-radius: .5rem;
   width: 50vw;
   max-width: 25rem;
-  position: fixed;
   bottom: 0;
   right: 3.5rem;
-  overflow: hidden;
   padding-bottom: 1rem;
   bottom: 1rem;
 }
-
-.player {
-    display: inline-flex;
-    flex-direction: row-reverse;
-    font-size: 1.5em;
-    width: auto;
-    height: auto;
-
-    > .btn {
-      width: 1.875rem;
-      text-align: center;
-      &+.btn {
-        margin-right: .625rem;
-      }
-    }
-}
-
-  .player-info {
-
-    .nav {
-      font-size: 0.75em;
-      height: 2.1875rem;
-    }
-  }
 </style>

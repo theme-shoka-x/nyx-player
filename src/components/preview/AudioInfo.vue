@@ -21,37 +21,13 @@ const artist = computed(() => {
 </script>
 
 <template>
-  <div class="info">
-    <h4 class="title">
+  <div class="info ml-2.5 w-full flex flex-col overflow-hidden text-ellipsis p-2.5">
+    <h4 class="m-0 max-h-12 overflow-hidden text-ellipsis p-0">
       {{ title }}
     </h4>
-    <span> {{ artist }} </span>
+    <span class="text-3"> {{ artist }} </span>
     <Suspense>
       <MusicLRC />
     </Suspense>
   </div>
 </template>
-
-<style lang="stylus" scoped>
-.info {
-      display: flex;
-      flex-direction: column;
-      margin-left: .625rem;
-      padding: .625rem;
-      text-overflow: ellipsis;
-      overflow: hidden;
-      width: 100%;
-
-      h4 {
-        margin: 0;
-        text-overflow: ellipsis;
-        max-height: 3rem;
-        padding: 0;
-        overflow: hidden;
-      }
-
-      span {
-        font-size: $font-size-smallest;
-      }
-    }
-</style>

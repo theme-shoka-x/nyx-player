@@ -43,7 +43,7 @@ watch(() => playingStore.currentTime, () => {
 
 <template>
   <div class="tabs">
-    <div class="nav">
+    <div class="nav h-8.75 text-3">
       <ul>
         <li
           v-for="(title, index) in navTitles" :key="title" :data-index="index" :class="{ active: index === viewPlaylist.value }"

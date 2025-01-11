@@ -4,7 +4,7 @@ import AudioInfo from './AudioInfo.vue'
 </script>
 
 <template>
-  <div class="preview">
+  <div class="preview flex items-center">
     <AudioCover />
     <AudioInfo />
   </div>
@@ -12,8 +12,6 @@ import AudioInfo from './AudioInfo.vue'
 
 <style lang="stylus" scoped>
 .preview {
-    display: flex;
-    align-items: center;
     padding: 1.25rem 1.25rem 0;
 
     @media (max-width: 867px) {
