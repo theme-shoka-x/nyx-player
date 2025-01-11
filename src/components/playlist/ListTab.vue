@@ -94,7 +94,7 @@ watch(() => playingStore.currentTime, () => {
   position: relative;
 
   .nav {
-    border-bottom: .0625rem solid var(--grey-1-a7);
+    border-bottom: .0625rem solid var(--player-background);
     height: 2.6875rem;
 
     ul {
@@ -185,7 +185,7 @@ ol {
         content: counter(counter);
         text-align: right;
         padding-right: .3125rem;
-        color: var(--grey-5);
+        color: var(--secondary-text);
       }
 
       .info {
@@ -199,7 +199,7 @@ ol {
           &:nth-child(2) {
             float: right;
             margin-left: .625rem;
-            color: var(--grey-5);
+            color: var(--secondary-text);
           }
         }
       }
@@ -218,8 +218,7 @@ ol {
           .bar {
             position: absolute;
             height: 100%;
-            // 原因未知，但是用var()就无效
-            background-color: alpha(#ed6ea0, 0.3);
+            background-color: var(--primary-color-a);
             top: 0;
             left: 0;
             border-radius: 0.8125em;
@@ -228,7 +227,7 @@ ol {
 
           &::before {
             content: attr(data-ptime) " / " attr(data-dtime);
-            color: var(--grey-5);
+            color: var(--secondary-text);
             position: absolute;
             right: 0;
             padding: 0 .3rem;
@@ -254,7 +253,7 @@ ol {
       }
 
       &:hover {
-        background-color: var(--grey-1-a7);
+        background-color: var(--player-background);
         &::before {
           color: var(--primary-color);
         }

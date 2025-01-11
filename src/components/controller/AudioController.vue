@@ -25,12 +25,12 @@ import VolumeBtn from './VolumeBtn.vue'
     align-items: center;
     text-align: center;
 
-    .btn {
-      color: var(--grey-6);
+    div {
+      color: var(--primary-text);
       width: 18%;
 
       &:hover {
-        color: var(--color-pink);
+        color: var(--hover-btn);
       }
     }
   }

@@ -10,6 +10,6 @@ import ListTab from './ListTab.vue'
 
 <style scoped>
 .playlist {
-  border-top: 0.125rem solid var(--grey-9-a1);
+  border-top: 0.125rem solid var(--playlist-line);
 }
 </style>

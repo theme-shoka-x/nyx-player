@@ -55,7 +55,7 @@ watch(lrcUrl, async (url) => {
 
       p {
         font-size: .75rem;
-        color: var(--grey-6);
+        color: var(--primary-text);
         line-height: 1rem!important;
         height: 1rem!important;
         padding: 0!important;

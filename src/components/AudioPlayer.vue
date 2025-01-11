@@ -61,7 +61,7 @@ const src = computed(() => {
       <AudioController />
       <audio id="audioPlayer" :src="src" :muted="!playingStore.enableVolume" @timeupdate="updateCurrentTime" @canplay="playingStore.currentId++" />
       <PlayListTabs />
-      <div class="absolute right-4 top-3 cursor-pointer text-3.25" @click="playingStore.showPlayer = false">
+      <div class="absolute right-4 top-3 cursor-pointer text-3.25 hover:color-[var(--hover-btn)]" @click="playingStore.showPlayer = false">
         X
       </div>
     </div>
@@ -102,13 +102,13 @@ const src = computed(() => {
 }
 
 .close {
-  color: var(--grey-4)
+  color: var(--close-btn)
 }
 
 .player-info {
-  border: .0625rem solid var(--grey-1);
+  border: .0625rem solid var(--player-border);
   box-shadow: 0 .625rem 1.875rem -.9375rem var(--box-bg-shadow);
-  background: var(--grey-1-a7);
+  background: var(--player-background);
   -webkit-backdrop-filter: blur(.625rem);
   backdrop-filter: blur(.625rem);
   width: 50vw;
