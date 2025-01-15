@@ -27,3 +27,11 @@ function clickChangeTheme() {
     切换主题
   </button>
 </template>
+
+<style>
+html[data-theme='dark'] {
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+}
+</style>

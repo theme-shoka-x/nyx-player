@@ -56,7 +56,7 @@ const src = computed(() => {
 
 <template>
   <Transition name="slideRight">
-    <div v-show="playingStore.showPlayer" class="player-info fixed z-9 overflow-hidden border-r-0.5rem">
+    <div v-show="playingStore.showPlayer" class="player-info border-radius-0.8rem fixed z-9 overflow-hidden rounded-xl">
       <AudioPreview />
       <AudioController />
       <audio id="audioPlayer" :src="src" :muted="!playingStore.enableVolume" @timeupdate="updateCurrentTime" @canplay="playingStore.currentId++" />

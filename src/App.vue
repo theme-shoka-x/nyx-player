@@ -72,8 +72,8 @@ const colorsLight
   --playlist-line: ${stylesPresent.styles.light.playListLine};
   --hover-btn: ${stylesPresent.styles.light.hoverBtn};
   --box-bg-shadow: ${stylesPresent.styles.light.boxBackgroundShadow};
-  --primary-color: 'rgb(${stylesPresent.styles.light.primaryColor})';
-  --primary-color-a: 'rgba(${stylesPresent.styles.light.primaryColor},0.3);
+  --primary-color: rgb(${stylesPresent.styles.light.primaryColor});
+  --primary-color-a: rgba(${stylesPresent.styles.light.primaryColor},0.3);
 }`
 
 const colorsDark
@@ -86,8 +86,8 @@ const colorsDark
   --playlist-line: ${stylesPresent.styles.dark.playListLine};
   --hover-btn: ${stylesPresent.styles.dark.hoverBtn};
   --box-bg-shadow: ${stylesPresent.styles.dark.boxBackgroundShadow};
-  --primary-color: 'rgb(${stylesPresent.styles.dark.primaryColor})';
-  --primary-color-a: 'rgba(${stylesPresent.styles.dark.primaryColor},0.3);
+  --primary-color: rgb(${stylesPresent.styles.dark.primaryColor});
+  --primary-color-a: rgba(${stylesPresent.styles.dark.primaryColor},0.3);
 }`
 
 if (props.darkModeTarget) {
