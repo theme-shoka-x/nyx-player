@@ -1,6 +1,7 @@
 <script setup lang="ts">
+import { onClickOutside } from '@vueuse/core'
 import { throttle } from 'es-toolkit'
-import { computed, onMounted, watch } from 'vue'
+import { computed, onMounted, ref, watch } from 'vue'
 import AudioController from './controller/AudioController.vue'
 import { PlayList } from './metingapi/playlist'
 import { usePlayingStore } from './playingStore'
@@ -52,11 +53,15 @@ const src = computed(() => {
   }
   return ''
 })
+
+const target = ref(null)
+
+onClickOutside(target, () => playingStore.showPlayer = false)
 </script>
 
 <template>
   <Transition name="slideRight">
-    <div v-show="playingStore.showPlayer" class="player-info border-radius-0.8rem fixed z-9 overflow-hidden rounded-xl">
+    <div v-show="playingStore.showPlayer" ref="target" class="player-info border-radius-0.8rem fixed z-9 overflow-hidden rounded-xl">
       <AudioPreview />
       <AudioController />
       <audio id="audioPlayer" :src="src" :muted="!playingStore.enableVolume" @timeupdate="updateCurrentTime" @canplay="playingStore.currentId++" />

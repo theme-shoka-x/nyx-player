@@ -42,11 +42,13 @@ watch(() => playingStore.currentTime, () => {
 </script>
 
 <template>
-  <div class="tabs">
+  <div class="tabs relative block">
     <div class="nav h-8.75 text-3">
-      <ul>
+      <ul class="flex overflow-x-auto whitespace-nowrap p-0">
         <li
-          v-for="(title, index) in navTitles" :key="title" :data-index="index" :class="{ active: index === viewPlaylist.value }"
+          v-for="(title, index) in navTitles"
+          :key="title" class="relative m-0 inline-block cursor-pointer border-none" 
+          :data-index="index" :class="{ active: index === viewPlaylist.value }"
           @click="viewPlaylistFlag = index"
         >
           {{ title }}
@@ -90,34 +92,13 @@ watch(() => playingStore.currentTime, () => {
 }
 
 .tabs {
-  display: block;
-  position: relative;
 
   .nav {
     border-bottom: .0625rem solid var(--player-background);
     height: 2.6875rem;
 
-    ul {
-      display: flex;
-      padding: 0;
-      white-space: nowrap;
-      overflow-x: auto;
-    }
-
-    ul.special::before {
-      font-family: ic;
-      content: "\e652";
-      font-size: x-large;
-      padding-left: 1em;
-    }
-
     li {
-      position: relative;
-      cursor: pointer;
-      border: none;
-      display: inline-block;
       padding: .3125rem 1.25rem;
-      margin: 0;
 
       &::before {
         content: "";
@@ -161,7 +142,6 @@ ol {
       display: flex;
       padding: .3125rem .9375rem .3125rem 1.5625rem;
       cursor: pointer;
-      // the-transition();
       height: 2rem;
       overflow: hidden;
 
@@ -209,8 +189,6 @@ ol {
         position: relative;
 
         &::before {
-          // font-family-icons();
-          // @extend .i-play:before;
           color: currentColor;
         }
 
@@ -231,12 +209,6 @@ ol {
             position: absolute;
             right: 0;
             padding: 0 .3rem;
-          }
-
-          &.seeking {
-            &::before {
-              color: currentColor;
-            }
           }
         }
 

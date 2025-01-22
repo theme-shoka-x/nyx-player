@@ -15,7 +15,5 @@ function changeMode() {
               'i-ri:shuffle-line': playingStore.mode === 'random',
               'i-ri:loop-right-line': playingStore.mode === 'loop' }"
     @click="changeMode"
-  >
-    切换模式
-  </div>
+  />
 </template>
