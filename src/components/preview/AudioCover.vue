@@ -81,7 +81,7 @@ const src = computed(() => {
 }
 
 .cover::before {
-    background: url("../../assets/play_needle.png") no-repeat center/contain;
+    background: url("../../assets/play_needle.avif") no-repeat center/contain;
     width: 3.4375rem;
     height: 5.1875rem;
     top: -1.5625rem;
@@ -99,7 +99,7 @@ const src = computed(() => {
 .cover .disc::after {
     content: "";
     position: absolute;
-    background: url("../../assets/play_disc.png") no-repeat center/contain;
+    background: url("../../assets/play_disc.avif") no-repeat center/contain;
     z-index: 1;
     width: 100%;
     height: 100%;
