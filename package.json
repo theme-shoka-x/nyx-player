@@ -2,6 +2,7 @@
   "name": "nyx-player",
   "type": "module",
   "version": "0.0.1",
+  "author": "zkz098",
   "exports": {
     ".": {
       "types": "./dist/entries/init.d.ts",
@@ -28,6 +29,7 @@
     "@vueuse/core": "^13.0.0",
     "es-toolkit": "^1.33.0",
     "pinia": "^3.0.1",
+    "pinia-plugin-persistedstate": "^4.2.0",
     "stylus": "^0.64.0",
     "unocss": "^66.0.0",
     "vue": "^3.5.13"

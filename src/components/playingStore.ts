@@ -15,6 +15,9 @@ export const usePlayingStore = defineStore('playing', {
       enableVolume: true,
     }
   },
+  persist: {
+    storage: sessionStorage,
+  },
   actions: {
     paused() {
       this.playing = false
