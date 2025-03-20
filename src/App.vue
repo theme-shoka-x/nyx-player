@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useStyleTag } from '@vueuse/core'
-import { onMounted, watch } from 'vue'
+import { onMounted, provide, watch } from 'vue'
 import AudioPlayer from './components/AudioPlayer.vue'
 import { usePlayingStore } from './components/playingStore'
 import { type Preset, presets } from './presets'
@@ -14,9 +14,12 @@ const props = defineProps<{
   styles?: Preset
 }>()
 const playingStore = usePlayingStore()
+provide('showBtn', props.showBtn)
+provide('playBtn', props.playBtn)
 
 onMounted(() => {
   const showBtnEl = document.querySelector(props.showBtn) as HTMLElement
+  
 
   if (showBtnEl) {
     showBtnEl.addEventListener('click', () => {

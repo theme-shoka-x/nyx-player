@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { onClickOutside } from '@vueuse/core'
 import { throttle } from 'es-toolkit'
-import { computed, onMounted, ref, watch } from 'vue'
+import { computed, inject, onMounted, ref, watch } from 'vue'
 import AudioController from './controller/AudioController.vue'
 import { PlayList } from './metingapi/playlist'
 import { usePlayingStore } from './playingStore'
@@ -56,7 +56,7 @@ const src = computed(() => {
 
 const target = ref(null)
 
-onClickOutside(target, () => playingStore.showPlayer = false)
+onClickOutside(target, () => playingStore.showPlayer = false, { ignore: [inject('showBtn'), inject('playBtn')] })
 </script>
 
 <template>
