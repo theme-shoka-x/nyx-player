@@ -1,3 +1,4 @@
+import type { Preset } from '../presets'
 import { createPinia } from 'pinia'
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
 import { createApp, h } from 'vue'
@@ -9,6 +10,9 @@ export function initPlayer(
   showBtn: string,
   urls: { url: string, name: string }[],
   playBtn?: string,
+  darkModeTarget?: string,
+  preset?: string,
+  styles?: Preset,
 ) {
   if (!el || !showBtn) {
     throw new Error('el and showBtn are required')
@@ -19,7 +23,7 @@ export function initPlayer(
   if (!player) {
     throw new Error('el must be valid selectors')
   }
-  const app = createApp(() => h(App, { urls, showBtn, playBtn }))
+  const app = createApp(() => h(App, { urls, showBtn, playBtn, darkModeTarget, preset, styles }))
   app.use(createPinia().use(piniaPluginPersistedstate))
   app.mount(player)
 }
