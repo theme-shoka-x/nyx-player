@@ -4,19 +4,8 @@ import AudioInfo from './AudioInfo.vue'
 </script>
 
 <template>
-  <div class="preview flex items-center">
+  <div class="preview flex-col items-center pb-0 pl-2.5 pr-2.5 pt-5 md:flex md:flex-row md:pl-5 md:pr-5">
     <AudioCover />
     <AudioInfo />
   </div>
 </template>
-
-<style lang="stylus" scoped>
-.preview {
-    padding: 1.25rem 1.25rem 0;
-
-    @media (max-width: 867px) {
-      padding: 1.25rem .625rem 0;
-      flex-direction: column;
-    }
-}
-</style>

@@ -25,7 +25,7 @@ watch(lrcUrl, async (url) => {
     lrc.parseLyric()
     lrcRes.value = lrc.lyrics
   }
-})
+}, { immediate: true })
 </script>
 
 <template>
