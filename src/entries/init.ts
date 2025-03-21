@@ -1,4 +1,5 @@
 import { createPinia } from 'pinia'
+import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
 import { createApp, h } from 'vue'
 import App from '../App.vue'
 import 'virtual:uno.css'
@@ -18,8 +19,7 @@ export function initPlayer(
   if (!player) {
     throw new Error('el must be valid selectors')
   }
-
   const app = createApp(() => h(App, { urls, showBtn, playBtn }))
-  app.use(createPinia())
+  app.use(createPinia().use(piniaPluginPersistedstate))
   app.mount(player)
 }

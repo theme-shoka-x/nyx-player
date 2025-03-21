@@ -24,14 +24,16 @@ export class PlayList {
   lastIdx: number
   name: string
   sIndex: number
-  constructor(url: string, name: string, sIndex: number) {
-    this.url = url
+  _type: string
+  constructor(url?: string, name?: string, sIndex?: number) {
+    this._type = 'playlist'
+    this.url = url ?? ''
     this.accessibleURL = this.parserURL()
     this.playlist = []
     this.index = 0
     this.lastIdx = 0
-    this.name = name
-    this.sIndex = sIndex
+    this.name = name ?? ''
+    this.sIndex = sIndex ?? 0
   }
 
   parserURL() {

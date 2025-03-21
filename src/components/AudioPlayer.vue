@@ -31,14 +31,12 @@ onMounted(() => {
   })
 })
 
-props.playlistURLs.forEach((url, index) => {
-  playingStore.playlists.push(new PlayList(url.url, url.name, index))
-})
-
-playingStore.playlists.forEach(async (playlist) => {
+await Promise.all(props.playlistURLs.map(async (url, index) => {
+  const playlist = new PlayList(url.url, url.name, index)
+  playingStore.playlists.push(playlist)
   playlist.parserURL()
   await playlist.fetchPlaylist()
-})
+}))
 
 const updateCurrentTime = throttle((event: Event) => {
   const currentTime = (event.target as HTMLAudioElement).currentTime

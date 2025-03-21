@@ -1,9 +1,22 @@
-import type { PlayList } from './metingapi/playlist'
 import { defineStore } from 'pinia'
+import { reactive } from 'vue'
+import { PlayList } from './metingapi/playlist'
+
+function parse(text: string) {
+  return JSON.parse(text, (_key, value) => {
+    if (value && value._type === 'playlist') {
+      const pl = value as PlayList
+      const plo = new PlayList()
+      Object.assign(plo, pl)
+      return plo
+    }
+    return value
+  })
+}
 
 export const usePlayingStore = defineStore('playing', {
   state: () => {
-    return {
+    return reactive({
       showPlayer: false,
       playing: false,
       currentTime: 0,
@@ -13,9 +26,13 @@ export const usePlayingStore = defineStore('playing', {
       playlists: [] as PlayList[],
       mode: 'order',
       enableVolume: true,
-    }
+    })
   },
   persist: {
+    serializer: {
+      deserialize: parse,
+      serialize: JSON.stringify,
+    },
     storage: sessionStorage,
   },
   actions: {

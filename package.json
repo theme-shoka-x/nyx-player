@@ -3,6 +3,7 @@
   "type": "module",
   "version": "0.0.1",
   "author": "zkz098",
+  "license": "AGPL-3.0-or-later",
   "exports": {
     ".": {
       "types": "./dist/entries/init.d.ts",
