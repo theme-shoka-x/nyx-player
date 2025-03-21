@@ -117,7 +117,6 @@ onClickOutside(target, () => playingStore.showPlayer = false, { ignore: [inject(
 }
 
 .player-info {
-  border: 0.0625rem solid var(--player-border);
   box-shadow: 0 0.625rem 1.875rem -0.9375rem var(--box-bg-shadow);
   background: var(--player-background);
   -webkit-backdrop-filter: blur(0.625rem);
