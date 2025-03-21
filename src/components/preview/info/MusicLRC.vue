@@ -1,6 +1,7 @@
 <script setup lang="ts">
+import type { LyricLine } from '../../metingapi/lrc'
 import { computed, ref, watch } from 'vue'
-import { Lyric, type LyricLine } from '../../metingapi/lrc'
+import { Lyric } from '../../metingapi/lrc'
 import { usePlayingStore } from '../../playingStore'
 
 const lrcIdx = ref(0)

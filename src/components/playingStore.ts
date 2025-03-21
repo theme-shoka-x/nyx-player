@@ -3,15 +3,13 @@ import { reactive } from 'vue'
 import { PlayList } from './metingapi/playlist'
 
 function parse(text: string) {
-  return JSON.parse(text, (_key, value) => {
-    if (value && value._type === 'playlist') {
-      const pl = value as PlayList
-      const plo = new PlayList()
-      Object.assign(plo, pl)
-      return plo
-    }
-    return value
+  const res = JSON.parse(text)
+  res.playlists = res.playlists.map((playlist: any) => {
+    const pl = new PlayList()
+    Object.assign(pl, playlist)
+    return pl
   })
+  return res
 }
 
 export const usePlayingStore = defineStore('playing', {
@@ -26,6 +24,7 @@ export const usePlayingStore = defineStore('playing', {
       playlists: [] as PlayList[],
       mode: 'order',
       enableVolume: true,
+      lastPage: ''
     })
   },
   persist: {
@@ -34,6 +33,7 @@ export const usePlayingStore = defineStore('playing', {
       serialize: JSON.stringify,
     },
     storage: sessionStorage,
+    debug: true
   },
   actions: {
     paused() {

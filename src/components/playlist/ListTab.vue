@@ -47,7 +47,7 @@ watch(() => playingStore.currentTime, () => {
       <ul class="flex overflow-x-auto whitespace-nowrap p-0">
         <li
           v-for="(title, index) in navTitles"
-          :key="title" class="relative m-0 inline-block cursor-pointer border-none" 
+          :key="title" class="relative m-0 inline-block cursor-pointer border-none"
           :data-index="index" :class="{ active: index === viewPlaylist.value }"
           @click="viewPlaylistFlag = index"
         >

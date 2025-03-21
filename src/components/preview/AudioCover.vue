@@ -30,7 +30,7 @@ const src = computed(() => {
   </div>
 </template>
 
-<style lang="stylus" scoped>
+<style scoped>
 @keyframes blur {
     0% {
         filter: blur(10px);

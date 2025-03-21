@@ -31,17 +31,25 @@ onMounted(() => {
   })
 })
 
-await Promise.all(props.playlistURLs.map(async (url, index) => {
-  const playlist = new PlayList(url.url, url.name, index)
-  playingStore.playlists.push(playlist)
-  playlist.parserURL()
-  await playlist.fetchPlaylist()
-}))
+if (playingStore.playlists.length === 0) {
+  await Promise.all(props.playlistURLs.map(async (url, index) => {
+    const playlist = new PlayList(url.url, url.name, index)
+    playingStore.playlists.push(playlist)
+    playlist.parserURL()
+    await playlist.fetchPlaylist()
+  }))
+}
 
 const updateCurrentTime = throttle((event: Event) => {
   const currentTime = (event.target as HTMLAudioElement).currentTime
-  playingStore.setCurrentTime(currentTime)
-  playingStore.songDuration = (event.target as HTMLAudioElement).duration || 0
+  if (playingStore.lastPage === window.location.pathname) {
+    playingStore.setCurrentTime(currentTime)
+  }
+  else {
+    (event.target as HTMLAudioElement).currentTime = playingStore.currentTime
+    playingStore.lastPage = window.location.pathname
+  }
+  playingStore.songDuration = (event.target as HTMLAudioElement).duration || playingStore.songDuration
 }, 250)
 
 const src = computed(() => {
@@ -71,49 +79,49 @@ onClickOutside(target, () => playingStore.showPlayer = false, { ignore: [inject(
   </Transition>
 </template>
 
-<style lang="stylus">
+<style scoped>
 @keyframes slideRightIn {
-    0% {
-      opacity: 0;
-      transform: translateX(50%);
-    }
+  0% {
+    opacity: 0;
+    transform: translateX(50%);
+  }
 
-    to {
-      opacity: 1;
-      transform: translateX(0);
-    }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 @keyframes slideRightOut {
-    0% {
-      opacity: 1;
-      transform: translateX(0);
-    }
+  0% {
+    opacity: 1;
+    transform: translateX(0);
+  }
 
-    to {
-      opacity: 0;
-      transform: translateX(50%);
-    }
+  to {
+    opacity: 0;
+    transform: translateX(50%);
+  }
 }
 
 .slideRight-enter-active {
-    animation: slideRightIn 0.5s;
+  animation: slideRightIn 0.5s;
 }
 
 .slideRight-leave-active {
-    animation: slideRightOut 0.5s;
+  animation: slideRightOut 0.5s;
 }
 
 .close {
-  color: var(--close-btn)
+  color: var(--close-btn);
 }
 
 .player-info {
-  border: .0625rem solid var(--player-border);
-  box-shadow: 0 .625rem 1.875rem -.9375rem var(--box-bg-shadow);
+  border: 0.0625rem solid var(--player-border);
+  box-shadow: 0 0.625rem 1.875rem -0.9375rem var(--box-bg-shadow);
   background: var(--player-background);
-  -webkit-backdrop-filter: blur(.625rem);
-  backdrop-filter: blur(.625rem);
+  -webkit-backdrop-filter: blur(0.625rem);
+  backdrop-filter: blur(0.625rem);
   width: 50vw;
   max-width: 25rem;
   bottom: 0;

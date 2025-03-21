@@ -19,7 +19,7 @@ export interface AccessibleURL {
 export class PlayList {
   url: string
   playlist: Song[]
-  accessibleURL: AccessibleURL
+  accessibleURL?: AccessibleURL
   index: number
   lastIdx: number
   name: string
@@ -28,7 +28,6 @@ export class PlayList {
   constructor(url?: string, name?: string, sIndex?: number) {
     this._type = 'playlist'
     this.url = url ?? ''
-    this.accessibleURL = this.parserURL()
     this.playlist = []
     this.index = 0
     this.lastIdx = 0
@@ -61,12 +60,16 @@ export class PlayList {
       }
     })
     if (result) {
+      this.accessibleURL = result
       return result
     }
     throw new Error(`Unsupported URL: ${this.url}`)
   }
 
   async fetchPlaylist() {
+    if (!this.accessibleURL) {
+      throw new Error('Playlist URL is not accessible')
+    }
     const res = await fetch(`${METING_API}?type=${this.accessibleURL.type}&id=${this.accessibleURL.id}&server=${this.accessibleURL.provider}`)
     this.playlist = await res.json() as APIResponse[]
   }

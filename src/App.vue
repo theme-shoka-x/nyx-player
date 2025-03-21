@@ -95,10 +95,9 @@ const colorsDark
 
 if (props.darkModeTarget) {
   if (props.darkModeTarget === 'auto') {
-    useStyleTag(`@media(prefers-color-scheme:light){body${colorsLight}}`)
-    useStyleTag(`@media(prefers-color-scheme:dark){body${colorsDark}}`)
-  }
-  else {
+    useStyleTag(`@media(prefers-color-scheme:light){html${colorsLight}}`)
+    useStyleTag(`@media(prefers-color-scheme:dark){html${colorsDark}}`)
+  } else {
     useStyleTag(`html${colorsLight}`)
     useStyleTag(`${props.darkModeTarget}${colorsDark}`)
   }
