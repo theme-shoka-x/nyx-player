@@ -11,8 +11,8 @@
       "browser": "./dist/nyx-player.umd.cjs",
       "require": "./dist/nyx-player.umd.cjs"
     },
-    "./components": {
-      "import": "./src/App.vue"
+    "./component": {
+      "import": "./src/NyxPlayer.vue"
     },
     "./style": "./dist/nyx-player.css"
   },

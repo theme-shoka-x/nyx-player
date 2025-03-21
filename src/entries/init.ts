@@ -2,7 +2,7 @@ import type { Preset } from '../presets'
 import { createPinia } from 'pinia'
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
 import { createApp, h } from 'vue'
-import App from '../App.vue'
+import App from '../NyxPlayer.vue'
 import 'virtual:uno.css'
 
 export function initPlayer(

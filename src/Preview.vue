@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import App from './App.vue'
 import { usePlayingStore } from './components/playingStore'
+import App from './NyxPlayer.vue'
 
 const playingStore = usePlayingStore()
 
