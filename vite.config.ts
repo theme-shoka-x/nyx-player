@@ -17,11 +17,9 @@ export default defineConfig(({ isPreview }) => {
       ],
     build: {
       lib: {
-        entry: {
-          player: 'src/entries/init.ts',
-          components: 'src/entries/components.ts',
-        },
-        formats: ['es', 'cjs'],
+        entry: 'src/entries/init.ts',
+        name: 'NyxPlayer',
+        formats: ['es', 'iife', 'umd'],
       },
     },
   }
