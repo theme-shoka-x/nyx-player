@@ -7,7 +7,7 @@ import VolumeBtn from './VolumeBtn.vue'
 </script>
 
 <template>
-  <div class="controller flex cursor-pointer items-center text-align-center">
+  <div class="controller flex cursor-pointer items-center justify-around text-align-center text-sm">
     <OrderBtn />
     <BackBtn />
     <PlayBtn />
@@ -16,18 +16,13 @@ import VolumeBtn from './VolumeBtn.vue'
   </div>
 </template>
 
-<style lang="stylus">
-.controller {
-    font-size: 14px;
-    justify-content: space-around;
+<style lang="css">
+.controller div {
+  color: var(--primary-text);
+  width: 18%;
+}
 
-    div {
-      color: var(--primary-text);
-      width: 18%;
-
-      &:hover {
-        color: var(--hover-btn);
-      }
-    }
-  }
+.controller div:hover {
+  color: var(--hover-btn);
+}
 </style>

@@ -1,9 +1,10 @@
+import { destr } from 'destr'
 import { defineStore } from 'pinia'
 import { reactive } from 'vue'
 import { PlayList } from './metingapi/playlist'
 
 function parse(text: string) {
-  const res = JSON.parse(text)
+  const res = destr(text) as any
   res.playlists = res.playlists.map((playlist: any) => {
     const pl = new PlayList()
     Object.assign(pl, playlist)
@@ -24,7 +25,7 @@ export const usePlayingStore = defineStore('playing', {
       playlists: [] as PlayList[],
       mode: 'order',
       enableVolume: true,
-      lastPage: ''
+      lastPage: '',
     })
   },
   persist: {
@@ -33,7 +34,7 @@ export const usePlayingStore = defineStore('playing', {
       serialize: JSON.stringify,
     },
     storage: sessionStorage,
-    debug: true
+    debug: true,
   },
   actions: {
     paused() {
