@@ -1,6 +1,4 @@
-** Nyx-player 现已合入 [UIKit](https://github.com/theme-shoka-x/ShokaX-UI-Kit/tree/main/packages/nyx-player) MonoRepo 中进行开发，此仓库存档作为记录**
-
-# NyxPlayer
+# Nyx-player 现已合入 [UIKit](https://github.com/theme-shoka-x/ShokaX-UI-Kit/tree/main/packages/nyx-player) MonoRepo 中进行开发，此仓库存档作为记录
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/4e2759ea-b698-4dc2-81b4-3c88d8fd997b/deploy-status)](https://app.netlify.com/sites/unique-gnome-214f06/deploys)
 
